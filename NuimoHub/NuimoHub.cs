@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NuimoHelpers;
@@ -19,7 +20,7 @@ namespace NuimoHub
             {
                 //new CastApp.CastApp(),
                 //new HueApp.HueApp(),
-                //new TimerApp.TimerApp(),
+                new TimerApp.TimerApp(),
                 new TestApp.TestApp()
             };
             Applications = new LinkedList<INuimoApp>(apps);
@@ -48,6 +49,8 @@ namespace NuimoHub
             while (!await nuimoController.ConnectAsync())
             {
             }
+
+            nuimoController.HeartBeatInterval = TimeSpan.FromSeconds(2);
             NextApp(nuimoController);
         }
 
@@ -56,11 +59,24 @@ namespace NuimoHub
             if (controller == null)
                 return;
 
-            controller.GestureEventOccurred += OnNuimoGestureEvent;
             controller.FirmwareVersionRead += OnFirmwareVersion;
-            controller.ConnectionStateChanged += OnConnectionState;
+            controller.HardwareVersionRead += OnHardwareVersion;
+            controller.ColorRead += OnColorRead;
+
             controller.BatteryPercentageChanged += OnBatteryPercentage;
             controller.LedMatrixDisplayed += OnLedMatrixDisplayed;
+
+            controller.GestureEventOccurred += OnNuimoGestureEvent;
+
+            controller.ConnectionStateChanged += OnConnectionState;
+            controller.HeartbeatReceived += OnHeartbeatReceived;
+
+
+        }
+
+        private void OnHeartbeatReceived(INuimoController nuimoController, object heartbeatObject)
+        {
+            Debug.WriteLine("Heartbeat received");
         }
 
         private void NextApp(INuimoController controller)
@@ -104,6 +120,16 @@ namespace NuimoHub
         private void OnFirmwareVersion(INuimoController nuimoController, string firmwareVersion)
         {
             Debug.WriteLine(firmwareVersion);
+        }
+
+        private void OnColorRead(INuimoController nuimoController, NuimoColor color)
+        {
+            Debug.WriteLine(color);
+        }
+
+        private void OnHardwareVersion(INuimoController nuimoController, string hardwareVersion)
+        {
+            Debug.WriteLine(hardwareVersion);
         }
 
         private void OnConnectionState(INuimoController nuimoController, NuimoConnectionState nuimoConnectionState)

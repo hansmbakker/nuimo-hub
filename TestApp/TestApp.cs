@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using NuimoHelpers.LedMatrices;
 using NuimoHub.Interfaces;
 using NuimoSDK;
@@ -39,6 +38,10 @@ namespace TestApp
                 var progressMatrix = ProgressBars.VerticalBar(TestValue);
                 sender.DisplayLedMatrixAsync(progressMatrix, 2,
                     NuimoLedMatrixWriteOptions.WithFadeTransition | NuimoLedMatrixWriteOptions.WithoutWriteResponse);
+            }
+            if (nuimoGestureEvent.Gesture == NuimoGesture.ButtonPress)
+            {
+                sender.DisplayLedMatrixAsync(NuimoBuiltinLedMatrix.Busy);
             }
             Debug.WriteLine(nuimoGestureEvent.Gesture);
         }

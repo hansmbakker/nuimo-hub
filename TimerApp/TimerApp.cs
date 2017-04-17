@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using NuimoHelpers.LedMatrices;
 using NuimoHub.Interfaces;
 using NuimoSDK;
@@ -17,17 +18,21 @@ namespace TimerApp
         private TimeSpan TimeLeft { get; set; }
 
         private Timer Timer { get; set; }
+
+        public bool HasFocus { get; set; }
+
+        public bool TimerIsRunning { get; set; }
         public string Name => "Timer";
         public NuimoLedMatrix Icon => Icons.Timer;
 
         public void OnFocus(INuimoHub sender)
         {
-            //throw new NotImplementedException();
+            HasFocus = true;
         }
 
         public void OnLostFocus(INuimoHub sender)
         {
-            //throw new NotImplementedException();
+            HasFocus = false;
         }
 
         public void OnGestureEvent(INuimoController sender, NuimoGestureEvent nuimoGestureEvent)
@@ -46,13 +51,57 @@ namespace TimerApp
 
         private void SetUnset(INuimoController controller)
         {
-            //throw new NotImplementedException();
+            if (TimerIsRunning)
+            {
+                StopCountdown();
+            }
+            else
+            {
+                Timer = new Timer(ProcessCountdownTick, controller, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+                TimerIsRunning = true;
+            }
+        }
+
+        private void StopCountdown()
+        {
+            Timer.Dispose();
+            TimeLeft = TimeSpan.Zero;
+            TimerIsRunning = false;
+        }
+
+        private void ProcessCountdownTick(object controllerObject)
+        {
+            var controller = controllerObject as INuimoController;
+            ;
+
+            TimeLeft -= TimeSpan.FromSeconds(1);
+
+            if (TimeLeft < TimeSpan.Zero)
+            {
+                StopCountdown();
+                if (controller != null)
+                    ShowTimeoutAlert(controller);
+            }
+            else
+            {
+                if (controller != null && HasFocus)
+                    ShowTime(controller);
+            }
+        }
+
+        private async Task ShowTimeoutAlert(INuimoController controller)
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                var durationSeconds = 0.7;
+                controller.DisplayLedMatrixAsync(Icons.Timer, durationSeconds,
+                    NuimoLedMatrixWriteOptions.WithoutWriteResponse);
+                await Task.Delay(TimeSpan.FromSeconds(durationSeconds));
+            }
         }
 
         private void ChangeTime(int value)
         {
-            //TODO Pause or stop timer
-
             //reset if more than 3 hours and adding
             if (TimeLeft > TimeSpan.FromHours(3) && value > 0)
                 TimeLeft = TimeSpan.MinValue;
@@ -61,7 +110,7 @@ namespace TimerApp
             else if (TimeLeft > TimeSpan.FromMinutes(1))
                 TimeLeft += TimeSpan.FromMinutes(1 * GetSign(value));
             else if (TimeLeft > TimeSpan.FromSeconds(10))
-                TimeLeft += TimeSpan.FromMinutes(1 * GetSign(value));
+                TimeLeft += TimeSpan.FromSeconds(10 * GetSign(value));
             else
                 TimeLeft += TimeSpan.FromSeconds(1 * GetSign(value));
 
@@ -80,7 +129,7 @@ namespace TimerApp
             else
                 timeDisplay = timeDisplay.AddSeconds(TimeLeft.Seconds);
 
-            //controller?.DisplayLedMatrixAsync(timeDisplay, 2, NuimoLedMatrixWriteOptions.WithoutWriteResponse);
+            controller?.DisplayLedMatrixAsync(timeDisplay, 2, NuimoLedMatrixWriteOptions.WithoutWriteResponse);
             Debug.WriteLine(TimeLeft);
         }
 

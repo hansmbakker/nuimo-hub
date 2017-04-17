@@ -32,6 +32,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+    <EnableGatekeeperAnalysis>false</EnableGatekeeperAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
@@ -146,6 +148,10 @@
     <ProjectReference Include="..\TestApp\TestApp.csproj">
       <Project>{950FCC79-CE4B-41CF-AEEF-C450D7A9045B}</Project>
       <Name>TestApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TimerApp\TimerApp.csproj">
+      <Project>{83164498-1460-4166-B1F0-252E0DF0263F}</Project>
+      <Name>TimerApp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
