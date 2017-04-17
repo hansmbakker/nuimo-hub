@@ -8,9 +8,9 @@ namespace NuimoHub.Interfaces
 
         NuimoLedMatrix Icon { get; }
 
-        void OnFocus(INuimoHub sender);
+        void OnFocus(INuimoController sender);
 
-        void OnLostFocus(INuimoHub sender);
+        void OnLostFocus(INuimoController sender);
 
         void OnGestureEvent(INuimoController sender, NuimoGestureEvent nuimoGestureEvent);
     }

@@ -195,6 +195,17 @@ namespace NuimoHelpers.LedMatrices
             "  *   *  " +
             "   ***   " +
             "         ");
+
+        public static readonly NuimoLedMatrix Cross = new NuimoLedMatrix(
+            "         " +
+            "         " +
+            "  *   *  " +
+            "   * *   " +
+            "    *    " +
+            "   * *   " +
+            "  *   *  " +
+            "         " +
+            "         ");
     }
 
     public static class ProgressBars

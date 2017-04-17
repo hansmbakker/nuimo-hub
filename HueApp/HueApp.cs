@@ -14,10 +14,12 @@ namespace HueApp
     {
         public HueApp()
         {
-            Task.Run(async () => await SetupHue());
+            
         }
 
         private HueClient HueClient { get; set; }
+
+        private bool IsInitialized = false;
 
         private Dictionary<RoomClass, Group> GroupDictionary { get; set; }
 
@@ -29,20 +31,28 @@ namespace HueApp
 
         public NuimoLedMatrix Icon => Icons.LightBulb;
 
-        public void OnFocus(INuimoHub nuimoHub)
+        public void OnFocus(INuimoController nuimoController)
         {
-            //throw new NotImplementedException();
+            if (!IsInitialized)
+            {
+                nuimoController.DisplayLedMatrixAsync(NuimoBuiltinLedMatrix.Busy, 5);
+                SetupHue().Wait();
+                nuimoController.DisplayLedMatrixAsync(new NuimoLedMatrix());
+            }
         }
 
-        public void OnLostFocus(INuimoHub sender)
+        public void OnLostFocus(INuimoController sender)
         {
             //throw new NotImplementedException();
         }
 
         public void OnGestureEvent(INuimoController controller, NuimoGestureEvent nuimoGestureEvent)
         {
-            //var groupInControl = GroupForController[controller.Identifier];
-            //IEnumerable<string> lights = groupInControl.Lights;
+            if (!IsInitialized)
+            {
+                controller.DisplayLedMatrixAsync(Icons.Cross);
+                return;
+            }
 
             switch (nuimoGestureEvent.Gesture)
             {
@@ -51,11 +61,10 @@ namespace HueApp
                     var matrix = GetPowerMatrix(newState);
                     controller.DisplayLedMatrixAsync(matrix);
                     break;
-                case NuimoGesture.ButtonRelease:
-                    break;
                 case NuimoGesture.Rotate:
-                    ChangeBrightness(nuimoGestureEvent.Value);
-                    //controller.DisplayLedMatrixAsync(NuimoLedMatrix)
+                    var newBrightness = ChangeBrightness(nuimoGestureEvent.Value) / 255.0;
+                    var brightnessMatrix = ProgressBars.VerticalBar(newBrightness);
+                    controller.DisplayLedMatrixAsync(brightnessMatrix);
                     break;
                 case NuimoGesture.SwipeLeft:
                 case NuimoGesture.SwipeRight:
@@ -63,22 +72,8 @@ namespace HueApp
                     var matrixForRoom = MatrixForRoomClass(newRoom);
                     controller.DisplayLedMatrixAsync(matrixForRoom);
                     break;
-                case NuimoGesture.SwipeUp:
-                    break;
-                case NuimoGesture.SwipeDown:
-                    break;
-                case NuimoGesture.FlyLeft:
-                    break;
-                case NuimoGesture.FlyRight:
-                    break;
-                case NuimoGesture.FlyBackwards:
-                    break;
-                case NuimoGesture.FlyTowards:
-                    break;
-                case NuimoGesture.FlyUpDown:
-                    break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    break;
             }
         }
 
@@ -95,6 +90,11 @@ namespace HueApp
 
             Rooms = new LinkedList<RoomClass>(GroupDictionary.Keys);
             CurrentRoom = Rooms.Find(RoomClass.LivingRoom);
+            if (CurrentRoom == null)
+            {
+                CurrentRoom = Rooms.First;
+            }
+            IsInitialized = true;
         }
 
         private async Task SetupHueClient()
@@ -122,12 +122,9 @@ namespace HueApp
                 .Select(group => group.Class)
                 .Distinct();
 
-            foreach (var roomClass in availableRoomClasses)
-                if (roomClass != null)
-                {
-                    var groupForClass = groups.FirstOrDefault(group => group.Class == roomClass);
-                    GroupDictionary.Add(roomClass.Value, groupForClass);
-                }
+            GroupDictionary = availableRoomClasses
+                .Select(roomClass => groups.FirstOrDefault(group => group.Class == roomClass))
+                .ToDictionary(group => (RoomClass)group.Class);
         }
 
         private RoomClass SwitchRoom(NuimoGesture gesture)

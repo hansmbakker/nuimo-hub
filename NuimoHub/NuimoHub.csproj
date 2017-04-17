@@ -137,6 +137,10 @@
       <Project>{e1eda363-0b66-42dc-960f-55941ed96fa4}</Project>
       <Name>NuimoSDK</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HueApp\HueApp.csproj">
+      <Project>{2F34683F-A602-4268-95AF-AFC86F85B93E}</Project>
+      <Name>HueApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NuimoHelpers\NuimoHelpers.csproj">
       <Project>{447FCEF3-7F3D-4228-A5C3-4123337ADAC0}</Project>
       <Name>NuimoHelpers</Name>

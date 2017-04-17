@@ -19,7 +19,7 @@ namespace NuimoHub
             var apps = new List<INuimoApp>
             {
                 //new CastApp.CastApp(),
-                //new HueApp.HueApp(),
+                new HueApp.HueApp(),
                 new TimerApp.TimerApp(),
                 new TestApp.TestApp()
             };
@@ -85,7 +85,7 @@ namespace NuimoHub
             if (currentApp != null)
             {
                 controller.ThrottledGestureEventOccurred -= currentApp.OnGestureEvent;
-                currentApp.OnLostFocus(this);
+                currentApp.OnLostFocus(controller);
             }
             else
             {
@@ -100,7 +100,7 @@ namespace NuimoHub
                 controller.ThrottledGestureEventOccurred += newApp.OnGestureEvent;
 
                 controller.DisplayLedMatrixAsync(newApp.Icon);
-                newApp.OnFocus(this);
+                newApp.OnFocus(controller);
                 Debug.WriteLine($"Switched to {newApp.Name}");
             }
 

@@ -46,12 +46,12 @@ namespace TestApp
             Debug.WriteLine(nuimoGestureEvent.Gesture);
         }
 
-        public void OnLostFocus(INuimoHub sender)
+        public void OnLostFocus(INuimoController sender)
         {
             //throw new NotImplementedException();
         }
 
-        public void OnFocus(INuimoHub sender)
+        public void OnFocus(INuimoController sender)
         {
             //throw new NotImplementedException();
         }

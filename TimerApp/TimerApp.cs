@@ -25,12 +25,12 @@ namespace TimerApp
         public string Name => "Timer";
         public NuimoLedMatrix Icon => Icons.Timer;
 
-        public void OnFocus(INuimoHub sender)
+        public void OnFocus(INuimoController sender)
         {
             HasFocus = true;
         }
 
-        public void OnLostFocus(INuimoHub sender)
+        public void OnLostFocus(INuimoController sender)
         {
             HasFocus = false;
         }
