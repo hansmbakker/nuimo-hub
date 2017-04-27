@@ -1,4 +1,4 @@
-using NuimoHub.Frontend.Models;
+using NuimoHub.Core.Configuration;
 
 namespace NuimoHub.Frontend.Interfaces
 {

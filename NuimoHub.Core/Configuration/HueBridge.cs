@@ -1,4 +1,4 @@
-namespace NuimoHub.Frontend.Models
+namespace NuimoHub.Core.Configuration
 {
     public class HueBridge
     {

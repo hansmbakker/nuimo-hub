@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuimoHub.Frontend", "NuimoHub.Frontend\NuimoHub.Frontend.csproj", "{3F147EAE-68F1-40E3-BBEE-630171B04734}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuimoHub.Core", "NuimoHub.Core\NuimoHub.Core.csproj", "{C9286867-7B17-4489-A673-FA397D15F21F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -183,6 +185,22 @@ Global
 		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x64.Build.0 = Release|Any CPU
 		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x86.ActiveCfg = Release|Any CPU
 		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x86.Build.0 = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|ARM.Build.0 = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|x64.Build.0 = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Debug|x86.Build.0 = Debug|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|ARM.Build.0 = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|x64.ActiveCfg = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|x64.Build.0 = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|x86.ActiveCfg = Release|Any CPU
+		{C9286867-7B17-4489-A673-FA397D15F21F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
