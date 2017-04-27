@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuimoHub", "NuimoHub\NuimoHub.csproj", "{8CD584BA-B750-4AB3-B982-EDF225B1E19A}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerApp", "TimerApp\TimerApp.csproj", "{83164498-1460-4166-B1F0-252E0DF0263F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{950FCC79-CE4B-41CF-AEEF-C450D7A9045B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NuimoHub.Frontend", "NuimoHub.Frontend\NuimoHub.Frontend.csproj", "{3F147EAE-68F1-40E3-BBEE-630171B04734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,22 @@ Global
 		{950FCC79-CE4B-41CF-AEEF-C450D7A9045B}.Release|x64.Build.0 = Release|x64
 		{950FCC79-CE4B-41CF-AEEF-C450D7A9045B}.Release|x86.ActiveCfg = Release|x86
 		{950FCC79-CE4B-41CF-AEEF-C450D7A9045B}.Release|x86.Build.0 = Release|x86
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|ARM.Build.0 = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|ARM.ActiveCfg = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|ARM.Build.0 = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x64.Build.0 = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F147EAE-68F1-40E3-BBEE-630171B04734}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
