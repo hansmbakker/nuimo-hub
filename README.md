@@ -9,31 +9,53 @@ I started working on three integrations:
 - A kitchen timer
 
 ## Application status
-The application does not work properly yet; this is a quick first commit so that other people can start looking at it and so that I have a place to commit my code to.
+Currently the hub is in a basic state.
 
-The main issue is that the application freezes after some time or when an integration handled around ~8 (rotation) events. I tried:
-- enabling throwing on all Exceptions
-- lowering the trigger interval by creating a throttled gesture event in the NuimoSDK (getsenic/nuimo-windows#16)
-- unloading integrations to see whether it was caused by a certain piece of code
+Todo:
 
-Other than that, the connecting logic and the device watching logic might need to be improved (potentially in the Nuimo SDK instead of this application)
+- [ ] connection stability
+- [ ] device watching logic #1
+- [ ] reconnection when the connection
+- [ ] management interface
+- [ ] any changes to make the hub application more robust.
 
 ## Integrations status
 For most integrations there is groundwork but they are not finished yet.
 
 ### Philips Hue
 - Uses Q42.HueApi
-- Currently the connection settings are hardcoded in `HueApp.cs` until the Hue link button functionality is implemented.
-- Oddly enough the application freezes when `await HueClient.GetGroupsAsync();` is called
-- Code is mostly there but does not function well yet
+- Currently the connection settings are hardcoded in `HueApp.cs`
+- Has support for three room types defined in the Philips Hue app (LivingRoom, Hallway and Bedroom)
+- Swiping left/right allows you to select a room
+- Button press switches light on/off
+- Rotate changes brightness
+
+Todo:
+
+- [ ] implement Hue discovery #3
+- [ ] implement the Hue link button functionality #2
+- [ ] fix brightness adjustment / display
+- [ ] make group / room management more reliable
+  - [ ] groups are in room 'Other' by default
+  - [ ] multiple groups in same room?
 
 ### Chromecast
 - Uses SharpCaster
 - Implementation not finished yet
 
 ### Kitchen timer
+Basic working version:
 - Time can be set by rotating the ring
 - Displays the time on the LED matrix
+- Button press starts countdown
+- Second button press stops the countdown and resets the time
+- Timer icon is flashed 10 times when countdown finishes
+
+Todo:
+
+- [ ] Do not allow to start countdown if TimeLeft is zero
+- [ ] Make time display better
+- [ ] Make time adjustment better
 
 ### Test app
 - Used to fiddle around with events and led matrices
