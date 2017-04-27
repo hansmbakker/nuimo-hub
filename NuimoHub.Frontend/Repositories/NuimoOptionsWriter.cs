@@ -5,8 +5,8 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using NuimoHub.Core.Configuration;
 using NuimoHub.Frontend.Interfaces;
-using NuimoHub.Frontend.Models;
 
 namespace NuimoHub.Frontend.Repositories
 {

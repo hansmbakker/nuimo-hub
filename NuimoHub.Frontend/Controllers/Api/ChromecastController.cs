@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
+using NuimoHub.Core.Configuration;
 using NuimoHub.Frontend.Interfaces;
-using NuimoHub.Frontend.Models;
 
 using Rssdp;
 

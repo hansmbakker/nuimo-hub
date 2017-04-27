@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
@@ -93,12 +93,12 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="project.json" />
-  </ItemGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="NuimoHub.cs" />
+    <Compile Include="OptionsDownloader.cs" />
     <Compile Include="StartupTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -145,6 +145,10 @@
       <Project>{447FCEF3-7F3D-4228-A5C3-4123337ADAC0}</Project>
       <Name>NuimoHelpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NuimoHub.Core\NuimoHub.Core.csproj">
+      <Project>{c9286867-7b17-4489-a673-fa397d15f21f}</Project>
+      <Name>NuimoHub.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NuimoHub.Interfaces\NuimoHub.Interfaces.csproj">
       <Project>{9E2E9FF8-E5D3-44E7-9769-E01C29F2EE69}</Project>
       <Name>NuimoHub.Interfaces</Name>
@@ -157,6 +161,11 @@
       <Project>{83164498-1460-4166-B1F0-252E0DF0263F}</Project>
       <Name>TimerApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.3</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

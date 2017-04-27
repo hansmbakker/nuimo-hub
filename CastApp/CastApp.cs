@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using NuimoHelpers.LedMatrices;
+using NuimoHub.Core.Configuration;
 using NuimoHub.Interfaces;
 using NuimoSDK;
 using SharpCaster.Interfaces;
+using SharpCaster.Models;
 using SharpCaster.Models.ChromecastStatus;
 using SharpCaster.Models.MediaStatus;
 using SharpCaster.Services;
@@ -12,14 +14,18 @@ namespace CastApp
 {
     public class CastApp : INuimoApp
     {
+        private readonly Chromecast _chromecast;
+
         private static readonly ChromecastService ChromecastService = ChromecastService.Current;
 
-        public CastApp()
+        public CastApp(ChromecastOptions chromecast)
         {
-#pragma warning disable 4014
-            var chromecasts = ChromecastService.Current.StartLocatingDevices().Result;
-            Debug.WriteLine("Started locating chromecasts!");
-#pragma warning restore 4014
+            _chromecast = new Chromecast
+            {
+                DeviceUri = new Uri("https://" + chromecast.Ip),
+                FriendlyName = chromecast.Name
+            };
+
             ChromecastService.ChromeCastClient.ApplicationStarted += Client_ApplicationStarted;
             //ChromecastService.ChromeCastClient.VolumeChanged += _client_VolumeChanged;
             ChromecastService.ChromeCastClient.MediaStatusChanged += ChromeCastClient_MediaStatusChanged;
@@ -32,14 +38,14 @@ namespace CastApp
         public string Name => "Google Cast";
         public NuimoLedMatrix Icon => Icons.Cast;
 
-        public void OnFocus(INuimoHub nuimoHub)
+        public void OnFocus(INuimoController nuimoController)
         {
             //throw new NotImplementedException();
         }
 
-        public void OnLostFocus(INuimoHub sender)
+        public void OnLostFocus(INuimoController nuimoController)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void OnGestureEvent(INuimoController sender, NuimoGestureEvent nuimoGestureEvent)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NuimoHelpers.LedMatrices;
+using NuimoHub.Core.Configuration;
 using NuimoHub.Interfaces;
 using NuimoSDK;
 using Q42.HueApi;
@@ -12,9 +13,11 @@ namespace HueApp
 {
     public class HueApp : INuimoApp
     {
-        public HueApp()
+        private readonly HueOptions _hueOptions;
+
+        public HueApp(HueOptions hueOptions)
         {
-            
+            _hueOptions = hueOptions;
         }
 
         private HueClient HueClient { get; set; }
@@ -99,20 +102,8 @@ namespace HueApp
 
         private async Task SetupHueClient()
         {
-            ////todo detect hue bridge and store settings in ApplicationDataContainer
-            //var uri = new System.Uri("ms-appx:///hueSettings.json");
-            //var settingsFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(uri);
-            //var settingsContent = await Windows.Storage.FileIO.ReadTextAsync(settingsFile);
-
-            //var hueSettings = JsonConvert.DeserializeObject<HueSettings>(settingsContent);
-
-            var hueSettings = new HueSettings
-            {
-                Ip = "192.168.0.1",
-                Username = "putYourHueUsernameHere"
-            };
-            HueClient = new LocalHueClient(hueSettings.Ip, hueSettings.Username);
-            var test = HueClient.IsInitialized;
+            var bridge = _hueOptions.Bridge;
+            HueClient = new LocalHueClient(bridge.Ip, bridge.AppKey);
         }
 
         private void FillGroupDictionary(IReadOnlyCollection<Group> groups)

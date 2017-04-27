@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -102,17 +102,16 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="hueSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="app.config" />
-    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HueApp.cs" />
-    <Compile Include="HueSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\HueApp.rd.xml" />
   </ItemGroup>
@@ -125,10 +124,22 @@
       <Project>{447fcef3-7f3d-4228-a5c3-4123337adac0}</Project>
       <Name>NuimoHelpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NuimoHub.Core\NuimoHub.Core.csproj">
+      <Project>{C9286867-7B17-4489-A673-FA397D15F21F}</Project>
+      <Name>NuimoHub.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NuimoHub.Interfaces\NuimoHub.Interfaces.csproj">
       <Project>{9e2e9ff8-e5d3-44e7-9769-e01c29f2ee69}</Project>
       <Name>NuimoHub.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Q42.HueApi">
+      <Version>3.3.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
