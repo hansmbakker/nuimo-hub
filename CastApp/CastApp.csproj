@@ -111,9 +111,9 @@
     <EmbeddedResource Include="Properties\CastApp.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\nuimo-windows\NuimoSDK\NuimoSDK.csproj">
-      <Project>{E1EDA363-0B66-42DC-960F-55941ED96FA4}</Project>
-      <Name>NuimoSDK</Name>
+    <ProjectReference Include="..\..\nuimo-windows\NuimoSDK.Core\NuimoSDK.Core.csproj">
+      <Project>{b3e6b299-e4b5-48b7-a280-2a76a617c3ae}</Project>
+      <Name>NuimoSDK.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\NuimoHelpers\NuimoHelpers.csproj">
       <Project>{447FCEF3-7F3D-4228-A5C3-4123337ADAC0}</Project>

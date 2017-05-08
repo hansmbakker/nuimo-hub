@@ -34,12 +34,12 @@ namespace HueApp
 
         public NuimoLedMatrix Icon => Icons.LightBulb;
 
-        public void OnFocus(INuimoController nuimoController)
+        public async void OnFocus(INuimoController nuimoController)
         {
             if (!IsInitialized)
             {
                 nuimoController.DisplayLedMatrixAsync(NuimoBuiltinLedMatrix.Busy, 5);
-                SetupHue().Wait();
+                await SetupHue();
                 nuimoController.DisplayLedMatrixAsync(new NuimoLedMatrix());
             }
         }

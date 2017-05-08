@@ -133,6 +133,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\nuimo-windows\NuimoSDK.Core\NuimoSDK.Core.csproj">
+      <Project>{b3e6b299-e4b5-48b7-a280-2a76a617c3ae}</Project>
+      <Name>NuimoSDK.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\nuimo-windows\NuimoSDK\NuimoSDK.csproj">
       <Project>{e1eda363-0b66-42dc-960f-55941ed96fa4}</Project>
       <Name>NuimoSDK</Name>
@@ -165,6 +169,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client">
       <Version>5.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.3.3</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
